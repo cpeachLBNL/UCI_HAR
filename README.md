@@ -18,7 +18,7 @@ This Repo contains the following files:
 
 
 ##Raw Data:
-The raw data used to construct the tidy data can be found in the following folder:  /UCI HAR Dataset.  
+The raw data used to construct the tidy data can be found in the following folder:  <b>/UCI HAR Dataset</b>.  
 
 Specifically, the following files were used:
 
@@ -29,7 +29,7 @@ Specifically, the following files were used:
   * <b>train/y_train.txt</b>  the activity ID (integer)
   * <b>train/X_train.txt</b> - a set of 561 measurements (numeric).  Each row corresponds to row in subject_train.txt and y_train.txt
 
-*The test dataset:
+* The test dataset:
   * <b>test/subject_test.txt</b> - the subject ID (integer) 
   * <b>test/y_test.txt</b> - the activity ID (integer)
   * <b>test/X_test.txt</b> - a set of 561 measurements (numeric).  Each row corresponds to a row in subject_test.txt and y_test.txt

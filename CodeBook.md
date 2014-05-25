@@ -110,44 +110,44 @@ This data set is 180 rows and 89 columns.  The values in each column are the mea
 
 ## Program PsuedoCode:
 
-1. Merge the training and test sets to create one data set.
+1. Merge the training and test sets to create one data set.<br\>
 a) Determine column names by loading features.txt
-*    use make.names() function to make syntactically valid column names
+* use make.names() function to make syntactically valid column names
 b) Load the Y, X, and Subject data
-*   Load Train Data:
-*   Load Test Data:
+* Load Train Data:
+* Load Test Data:
 c) Merge all 6 of the datasets:
-*    Combine columns of all 3 Train datasets
-*    Combine columns of all 3 Train datasets
-*    Combine rows of Train and Test datasets
+* Combine columns of all 3 Train datasets
+* Combine columns of all 3 Train datasets
+* Combine rows of Train and Test datasets
 
 2. Extract only the measurements involving mean or standard deviation for each measurement
-*    Create subset of column names
-*    Create subset of data.frame
+* Create subset of column names
+* Create subset of data.frame
 
 3. Use descriptive activity names to name the activities
-*    Load Activity Labels:
-*    Join dfActivityLabels with dfMeanStd
+* Load Activity Labels:
+* Join dfActivityLabels with dfMeanStd
 
 4  Appropriately label the data set (columns) with descriptive activity names
-*    Create list of column names to be re-labelled
-*    If first character is 't', replace with 'time'
-*    If first character is 'f', replace with 'frequency'
-*    Replace 'std' with 'StdDev'
-*    Replace 'mean' with 'Mean'
-*    Remove all periods
-*    Assign the new column names back to dfMeanStd
-*    Save this first tidy data set to file:  MeanStd.txt
+* Create list of column names to be re-labelled
+* If first character is 't', replace with 'time'
+* If first character is 'f', replace with 'frequency'
+* Replace 'std' with 'StdDev'
+* Replace 'mean' with 'Mean'
+* Remove all periods
+* Assign the new column names back to dfMeanStd
+* Save this first tidy data set to file:  MeanStd.txt
 
 5  Create a second, independent tidy data set:
-*    average of each combination of variable, activity and subject
-*    Determine 'measure' columns (i.e. remove "subjectID", "activityID", "activityLabel")
-*    Melt 'measure' columns into new dataframe     
-*    Create a list of groups 
-*    Check:  length(lstGroups) = 20 subjects x 6 activities x 86 variables = 15480
-*    Join back subjectID, activityLabel, and variable columns
-*    Reshape for better appearance
-*    Cols:  subjectID, activityID, activityLabel, <names of 86 variables>
-*    Save this dataframe to file:  TidyData.csv
+* Average of each combination of variable, activity and subject
+* Determine 'measure' columns (i.e. remove "subjectID", "activityID", "activityLabel")
+* Melt 'measure' columns into new dataframe     
+* Create a list of groups 
+* Check:  length(lstGroups) = 20 subjects x 6 activities x 86 variables = 15480
+* Join back subjectID, activityLabel, and variable columns
+* Reshape for better appearance
+* Cols:  subjectID, activityID, activityLabel, <names of 86 variables>
+* Save this dataframe to file:  TidyData.csv
 
 
