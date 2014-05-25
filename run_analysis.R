@@ -68,9 +68,8 @@ colNames <- gsub("mean", "Mean", colNames)
 colNames <- gsub("\\.", "", colNames)
 #    Assign the new column names back to dfMeanStd
 names(dfMeanStd) <- colNames
-
-#Display the structure of the new data.frame
-str(dfMeanStd)
+#   Save this first tidy data set to file:  MeanStd.txt
+write.table(dfMeanStd,"MeanStd.txt", sep = "\t", col.names=TRUE, row.names=FALSE)
 
 
 #5  Create a second, independent tidy data set:
@@ -79,22 +78,22 @@ str(dfMeanStd)
 #    Determine 'measure' columns (i.e. remove "subjectID", "activityID", "activityLabel")
 colMeasure <- colNames[!(colNames %in% c("subjectID", "activityID", "activityLabel"))]
 #    Melt 'measure' columns into new dataframe     
-dfMelt <- melt(dfMeanStd, id.vars=c("activityID", "activityLabel", "subjectID"), 
-               measure.vars=colMeasure, variable.name = "variable", value.name = "value")
-dfMelt$group <- paste(dfMelt$activityLabel, dfMelt$subjectID, dfMelt$variable, sep=".")
+dfMelt <- melt(dfMeanStd, id.vars=c("subjectID", "activityID", "activityLabel"), 
+               measure.vars=colMeasure, variable.name = "varName", value.name = "val")
+dfMelt$group <- paste(dfMelt$subjectID, dfMelt$activityLabel, dfMelt$varName, sep=".")
 #    Create a list of groups 
 #    Check:  length(lstGroups) = 20 subjects x 6 activities x 86 variables = 15480
-lstGroups <- split(dfMelt$value, dfMelt$group) # 15480
+lstGroups <- split(dfMelt$val, dfMelt$group) # 15480
 #    Calculate the mean of each group
 dfAvgGroups <- ldply(.data = lstGroups, .fun=mean)  # 15480 x 2
-names(dfAvgGroups) <- c("group", "mean") #rename the columns
-#    Join back subjectID, activityID, activityLabel, and variable columns
+names(dfAvgGroups) <- c("group", "mean2") #rename the columns
+#    Join back subjectID, activityLabel, and variable columns
 dfAvgGroups2 <- join(dfAvgGroups, 
-                     dfMelt [,c("subjectID", "activityID", "activityLabel", "variable", "group")], 
-                     by="group", type="left", match="first")
-#    Re-organize the columns for better appearance
-#    Cols:  subjectID, activityID, activityLabel, variable, mean  (drop 'group' column)
-dfTidyData <- dfAvgGroups2[ ,c("subjectID", "activityID", "activityLabel", "variable", "mean")]
+                     dfMelt [,c("subjectID", "activityID", "activityLabel", "varName", "group")], 
+                     by="group", type="left", match="first") # 15480 x 6
+#    Reshape for better appearance
+#    Cols:  subjectID, activityID, activityLabel, <names of 86 variables>
+dfTidyData <- dcast(dfAvgGroups2, subjectID + activityID + activityLabel ~ varName, value.var="mean2")
 #   Save this dataframe to file:  TidyData.csv
 write.table(dfTidyData,"TidyData.txt", sep = "\t", col.names=TRUE, row.names=FALSE)
 
