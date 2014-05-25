@@ -3,7 +3,7 @@
 This Repo contains the following files:
 * CodeBook.md - A description of the 2 tidy data sets and decisions made
 * MeanStd.txt - The first tidy data set
-* TidayData.txt - The second tidy data set
+* TidyData.txt - The second tidy data set
 * run_analysis.R - The R script required to create the 2 tidy data sets from the raw data
 * /UCI HAR Dataset/  - directory containing the various raw data files (see ‘Raw Data’ below for more information).
 
