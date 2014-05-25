@@ -24,7 +24,7 @@ More information about the raw data set can be found in:
 
 ##Tidy Data Set 1:
 The first tidy data set is:  <b>MeanStd.txt</b><br/>
-This data set is 10299 rows and 89 columns.  The values in each column are various measures per subject and activity.  The values are obtained by combining all of the column s of data in train and test data (subject, y, and X) , and then combining the rows on train and test data to create 1 single data frame.  A column for activityLabels was then added by matching ID’s to labels form activity_labels.txt.
+This data set is 10299 rows and 89 columns.  The values in each column are various measures per subject and activity.  The values are obtained by combining all of the column s of data in train and test data (subject, y, and X) , and then combining the rows on train and test data to create 1 single data frame.  A column for activityLabels was then added by matching ID’s to labels from activity_labels.txt.
 
 This dataset was then subsetted down to 89 columns by selecting only those those columns containing either the words: "mean" or "std", representing the mean and standard deviation of each measurement.  These columns were then renamed to enhance readability using the following rules:<br\>
 1)  Syntactically valid R names were created using the make.names() function.<br\>
@@ -127,7 +127,7 @@ The following lists all of the columns in <b>MeanStd.txt</b>.
 
 ##Tidy Data Set 2 :
 The second tidy data set is:  <b>TidyData.txt</b><br\>  
-This data set is 180 rows and 89 columns.  The column names are identical to those described above (see Tidy Data Set 1).  The data from Tidy Set 1 was transformed by grouping on subject ID and activity, and then the mean value for each measure was calculated.  
+This data set is 180 rows and 89 columns.  The values in each column are the mean measures per subject and activity.  The column names are identical to those described above (see Tidy Data Set 1).  The data from Tidy Set 1 was transformed by grouping on subject ID and activity, and then the mean value for each measure was calculated.  
 
 # Instruction list/script:
 1)  Copy the Raw Data and run_analysis.R to an appropriate directory.<br\>
