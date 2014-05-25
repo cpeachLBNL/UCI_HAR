@@ -1,41 +1,39 @@
-##Purpose:  Create a tidy data set from the UCI HAR Dataset.
+##Purpose:  Create 2 tidy data sets from the UCI HAR Dataset.
 
 ##Raw Data:
 The raw data used to construct the tidy data can be found in the following folder:  /UCI HAR Dataset.  
 
 Specifically, the following files were used:
 
-* <b>activity_labels.txt</b>  a list of activity ID <integer> and corresponding activity label <character>.
+* <b>activity_labels.txt</b>  a list of activity ID <integer> and corresponding activity label (character).
 
-The training dataset:
-* train/<b>subject_train.txt</b>  the subject ID <integer>
-* train/<b>y_train.txt</b>  the activity ID <integer>
-* train/<b>X_train.txt</b> - a set of 561 measurements <numeric>.  Each row corresponds to row in subject_train.txt and y_train.txt
+* The training dataset:
+  * <b>train/subject_train.txt</b>  the subject ID (integer)
+  * <b>train/y_train.txt</b>  the activity ID (integer)
+  * <b>train/X_train.txt</b> - a set of 561 measurements <numeric>.  Each row corresponds to row in subject_train.txt and y_train.txt
 
-The test dataset:
-* test/<b>subject_test.txt</b> - the subject ID <integer> 
-* test/<b>y_test.txt</b> - the activity ID <integer>
-* test/<b>X_test.txt</b> - a set of 561 measurements <numeric>.  Each row corresponds to a row in subject_test.txt and y_est.txt
+*The test dataset:
+  * <b>test/subject_test.txt</b> - the subject ID (integer) 
+  * <b>test/y_test.txt</b> - the activity ID (integer)
+  * <b>test/X_test.txt</b> - a set of 561 measurements <numeric>.  Each row corresponds to a row in subject_test.txt and y_est.txt
 
 More information about the raw data set can be found in:
-/UCI HAR Dataset/<b>README.txt</b>
-/UCI HAR Dataset/<b>features.txt</b>
-/UCI HAR Dataset/<b>feastures_info.txt</b>
+* <b>/UCI HAR Dataset/README.txt</b>
+* <b>/UCI HAR Dataset/features.txt</b>
+* <b>/UCI HAR Dataset/features_info.txt</b>
 
 ##Tidy Data Set 1:
 The first tidy data set consist of 1 file:  <b>MeanStd.txt</b>
-This data set consists of 10299 rows and 89 columns as described below.
-The values in each column are various measures per subject and activity.
+This data set consists of 10299 rows and 89 columns.  The values in each column are various measures per subject and activity.
 
-The orginal dataset was subsetted down to 89 columns by selecting only those those columns containing either the words: "mean" or "std".
-These columns were then renamed to enhance readbility using the following rules:
-1)  Syntactically valid R names were created using the make.names() function.
-2)  Column names beginning with 't' were updated to 'time'
-3)  Column names beginning with 'f' were updated to 'frequency'
-4)  Column names containing 'std' were replaced with 'StdDev'
-5)  Column names containing 'mean' were replaced with 'Mean'
-6)  All periods were removed.
-
+The orginal dataset was subsetted down to 89 columns by selecting only those those columns containing either the words: "mean" or "std", representing the mean and stadndard deviation of each measurement.  These columns were then renamed to enhance readbility using the following rules:<br\>
+1)  Syntactically valid R names were created using the make.names() function.<br\>
+2)  Column names beginning with 't' were updated to 'time'.<br\>
+3)  Column names beginning with 'f' were updated to 'frequency'.<br\>
+4)  Column names containing 'std' were replaced with 'StdDev'.<br\>
+5)  Column names containing 'mean' were replaced with 'Mean'.<br\>
+6)  All periods were removed.<br\>
+<br\>
 The following lists all of the columns in <b>MeanStd.txt</b>.  
 * subjectID - the subject ID <integer>
 * activityID - the activity ID <integer>
@@ -128,17 +126,15 @@ The following lists all of the columns in <b>MeanStd.txt</b>.
 * frequencyBodyBodyGyroJerkMagStdDev - measure <numeric>
 
 ##Tidy Data Set 2 :
-The second tidy data set consist of 1 file:  <b>TidyData.txt</b>
-This data set consists of 180 rows and 89 columns as described below.
-The values in each column are the mean of measures per subject and activity.
-The columns are identical to the set described above (Tidy Data Set 1)
+The second tidy data set consist of 1 file:  <b>TidyData.txt</b>.  This data set consists of 180 rows and 89 columns.
+The values in each column are the mean of measures per subject and activity.  The column names are identical to those described above (see Tidy Data Set 1)
 
 # Instruction list/script:
-1)  Copy the Raw Data and run_analysis.R to an appropriate directory.
-2)  Set the working directory in R to the same directory that contains the Raw Data and run_analysis.R.
-3)  Load script run_analysis.R into R.
-4)  Ensure that the following packages are installed:  plyr and reshape2.
-5)  Run the script run_analysis.R.
-6)  Check that 2 files: MeanStd.txt TidyData.txt have been created and match the specifications above.
+1)  Copy the Raw Data and run_analysis.R to an appropriate directory.<br\>
+2)  Set the working directory in R to the same directory that contains the Raw Data and run_analysis.R.<br\>
+3)  Load script run_analysis.R into R.<br\>
+4)  Ensure that the following packages are installed:  plyr and reshape2.<br\>
+5)  Run the script run_analysis.R.<br\>
+6)  Check that 2 files: MeanStd.txt TidyData.txt have been created and match the specifications above.<br\>
 
 
