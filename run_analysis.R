@@ -1,4 +1,4 @@
-# Purpose:  Create a tidy data set from the UCI HAR Dataset.
+# Purpose:  Create 2 tidy data set from the UCI HAR Dataset.
 library(plyr)
 library(reshape2)
 

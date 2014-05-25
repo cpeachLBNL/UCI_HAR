@@ -1,27 +1,5 @@
 ##Purpose:  Create 2 tidy data sets from the UCI HAR Dataset.
 
-##Raw Data:
-The raw data used to construct the tidy data can be found in the following folder:  /UCI HAR Dataset.  
-
-Specifically, the following files were used:
-
-* <b>activity_labels.txt</b>  a list of activity ID (integer) and corresponding activity label (character).
-
-* The training dataset:
-  * <b>train/subject_train.txt</b>  the subject ID (integer)
-  * <b>train/y_train.txt</b>  the activity ID (integer)
-  * <b>train/X_train.txt</b> - a set of 561 measurements (numeric).  Each row corresponds to row in subject_train.txt and y_train.txt
-
-*The test dataset:
-  * <b>test/subject_test.txt</b> - the subject ID (integer) 
-  * <b>test/y_test.txt</b> - the activity ID (integer)
-  * <b>test/X_test.txt</b> - a set of 561 measurements (numeric).  Each row corresponds to a row in subject_test.txt and y_test.txt
-
-More information about the raw data set can be found in:
-* <b>/UCI HAR Dataset/README.txt</b>
-* <b>/UCI HAR Dataset/features.txt</b>
-* <b>/UCI HAR Dataset/features_info.txt</b>
-
 ##Tidy Data Set 1:
 The first tidy data set is:  <b>MeanStd.txt</b><br/>
 This data set is 10299 rows and 89 columns.  The values in each column are various measures per subject and activity.  The values are obtained by combining all of the column s of data in train and test data (subject, y, and X) , and then combining the rows on train and test data to create 1 single data frame.  A column for activityLabels was then added by matching ID’s to labels from activity_labels.txt.
@@ -129,12 +107,47 @@ The following lists all of the columns in <b>MeanStd.txt</b>.
 The second tidy data set is:  <b>TidyData.txt</b><br\>  
 This data set is 180 rows and 89 columns.  The values in each column are the mean measures per subject and activity.  The column names are identical to those described above (see Tidy Data Set 1).  The data from Tidy Set 1 was transformed by grouping on subject ID and activity, and then the mean value for each measure was calculated.  
 
-# Instruction list/script:
-1)  Copy the Raw Data and run_analysis.R to an appropriate directory.<br\>
-2)  Set the working directory in R to the same directory that contains the Raw Data and run_analysis.R.<br\>
-3)  Load script run_analysis.R into R.<br\>
-4)  Ensure that the following packages are installed:  plyr and reshape2.<br\>
-5)  Run the script run_analysis.R.<br\>
-6)  Check that 2 files: MeanStd.txt TidyData.txt have been created and match the specifications above.<br\>
+
+## Program PsuedoCode:
+
+1. Merge the training and test sets to create one data set.
+a) Determine column names by loading features.txt
+*    use make.names() function to make syntactically valid column names
+b) Load the Y, X, and Subject data
+*   Load Train Data:
+*   Load Test Data:
+c) Merge all 6 of the datasets:
+*    Combine columns of all 3 Train datasets
+*    Combine columns of all 3 Train datasets
+*    Combine rows of Train and Test datasets
+
+2. Extract only the measurements involving mean or standard deviation for each measurement
+*    Create subset of column names
+*    Create subset of data.frame
+
+3. Use descriptive activity names to name the activities
+*    Load Activity Labels:
+*    Join dfActivityLabels with dfMeanStd
+
+4  Appropriately label the data set (columns) with descriptive activity names
+*    Create list of column names to be re-labelled
+*    If first character is 't', replace with 'time'
+*    If first character is 'f', replace with 'frequency'
+*    Replace 'std' with 'StdDev'
+*    Replace 'mean' with 'Mean'
+*    Remove all periods
+*    Assign the new column names back to dfMeanStd
+*    Save this first tidy data set to file:  MeanStd.txt
+
+5  Create a second, independent tidy data set:
+*    average of each combination of variable, activity and subject
+*    Determine 'measure' columns (i.e. remove "subjectID", "activityID", "activityLabel")
+*    Melt 'measure' columns into new dataframe     
+*    Create a list of groups 
+*    Check:  length(lstGroups) = 20 subjects x 6 activities x 86 variables = 15480
+*    Join back subjectID, activityLabel, and variable columns
+*    Reshape for better appearance
+*    Cols:  subjectID, activityID, activityLabel, <names of 86 variables>
+*    Save this dataframe to file:  TidyData.csv
 
 
