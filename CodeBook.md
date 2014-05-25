@@ -24,7 +24,7 @@ More information about the raw data set can be found in:
 
 ##Tidy Data Set 1:
 The first tidy data set consist of 1 file:  <b>MeanStd.txt</b>
-This data set is 10299 rows and 89 columns.  The values in each column are various measures per subject and activity.
+This data set is 10299 rows and 89 columns.  The values in each column are various measures per subject and activity.  The values are obtained by combining all of the column s of data in train and test data (subject, y, and X) , and then combining the rows on train and test data to create 1 single data frame.  A column for activityLabels was then added by matching ID’s to labels form activity_labels.txt.
 
 The original dataset was subsetted down to 89 columns by selecting only those those columns containing either the words: "mean" or "std", representing the mean and standard deviation of each measurement.  These columns were then renamed to enhance readability using the following rules:<br\>
 1)  Syntactically valid R names were created using the make.names() function.<br\>
